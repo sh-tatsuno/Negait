@@ -1,0 +1,36 @@
+.landing_top {
+  padding: 10em 0;
+  background: linear-gradient(120deg, #7bc6cc, #be93c5);;
+}
+
+.landing_title {
+  span {
+    position: relative;
+    color: rgba(#000, .2);
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: attr(data-text);
+      color: #fff;
+      opacity: 0;
+      transform: scale(1.5);
+      animation: landing_title 3s infinite;
+    }
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i+1})::after {
+        animation-delay: #{$i*.1}s;
+      }
+    }
+  }
+}
+@keyframes landing_title {
+  0%, 75%, 100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  25%, 50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

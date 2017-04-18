@@ -1,0 +1,34 @@
+<h2>Total Posts</h2>
+
+<% @posts.each do |post|%>
+  <% #binding.pry %>
+  <div>
+    <%= link_to post.title, post_path(post) %>
+  </div>
+  <div>
+    <%=post.detail%>
+  </div>
+  <%
+  date = (14 * (60*60*24) - (Time.now - post.created_at))
+  if date > 0
+  %>
+  <div>
+    残り
+    <%
+    date = (14 * (60*60*24) - (Time.now - post.created_at))
+    day = (date / (60*60*24)).floor
+    date -= day * (60*60*24)
+    hour = (date / (60*60)).floor
+    min = ((date % (60*60))/60).floor
+    %>
+    <%= day %>日
+    <%= hour %>時間
+    <%= min %>分
+  </div>
+  <%else%>
+  <div>
+    時間完了
+  </div>
+  <%end%>
+  <br>
+<%end%>

@@ -1,0 +1,55 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sex, '性別' %><br />
+    <label><%= f.radio_button :sex, 1, :checked => true %>男</label>
+    <label><%= f.radio_button :sex, 2 %>女</label>
+  </div>
+
+  <div class="field">
+  <%= f.select :company,
+    [["RHD: リクルートホールディングス", 1],
+    ["RCA: リクルートキャリア", 2],
+    ["RJB: リクルートジョブズ", 3],
+    ["RSF: リクルートスタッフィング", 4],
+    ["RSC: リクルート住まいカンパニー", 5],
+    ["RMP: リクルートマーケティングパートナーズ", 6],
+    ["RLS: リクルートライフスタイル", 7],
+    ["RMS: リクルートマネジメントソリューションズ", 8],
+    ["RAD: リクルートアドミニストレーション", 9],
+    ["RSC: リクルートコミュニケーションズ", 10],
+    ["RSC: リクルートテクノロジーズ", 11],
+    ["RMT: リクルートメディアテクノロジーラボ", 12],
+    ["Indeed", 13],
+    ["その他", 14]
+    ]
+    %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, 'パスワード確認' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div> 
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
