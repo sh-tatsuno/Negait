@@ -6,24 +6,26 @@
 
 <div>
 <%if @post.user_id == current_user.id%>
-<!--  投稿を編集・削除・応募してくれた人・部屋一覧 -->
-<!--  よく考えると投稿する側は各投稿とのidを紐づけてみるページが必要  -->
-<!--  questionを格納してもダメ(questionに紐づくqusestion_user_idとquestionそのもののidは異なる)  -->
-<!--  roomの中にquestion_user_idをグループ化した部屋を作るのがベター  -->
+  <!--  投稿を編集・削除・応募してくれた人・部屋一覧 -->
+  <!--  よく考えると投稿する側は各投稿とのidを紐づけてみるページが必要  -->
+  <!--  questionを格納してもダメ(questionに紐づくqusestion_user_idとquestionそのもののidは異なる)  -->
+  <!--  roomの中にquestion_user_idをグループ化した部屋を作るのがベター  -->
+  <p>
+    <%= link_to "投稿を編集", request.fullpath + '/edit', method: :get %>
+    <%= link_to "投稿を削除", method: :delete %>
+  </p>
 
-<p>
-  <%= link_to "投稿を編集", request.fullpath + '/edit', method: :get %>
-  <%= link_to "投稿を削除", method: :delete %>
-</p>
-<p>
-  <div>協力してくれた人と話す</div>
-  <% @supports.each do |support|%>
-    <%= link_to "支援者id: " + support.supporter_id.to_s, request.fullpath + '/supports/' + support.id %>
-  <% end %>
-</p>
+
+  <!--  協力してくれた人がいるかどうかで分岐 -->
+  <p>
+    <div>協力してくれた人と話す</div>
+    <% @supports.each do |support|%>
+      <%= link_to "支援者id: " + support.supporter_id.to_s, request.fullpath + '/supports/' + support.id %>
+    <% end %>
+  </p>
 
 <%else%>
-<!--  投稿の応募してくれた人・部屋一覧 -->
+  <!--  投稿の応募してくれた人・部屋一覧 -->
   <%= link_to "協力する！", request.fullpath + '/supports/new' %>
 <%end%>
 </div>
