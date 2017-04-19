@@ -1,39 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Negait</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header class="header">
-    <div class="header__bar row">
-
-      <div class="logo">
-      <%= link_to image_tag("negaito_logo.png", :size => "120x50", :alt => "アイコン"), :action => "index" %>
-      </div>
-
-      <% if user_signed_in? %>
-        <div class="user_nav grid-6">
-          <span><%= current_user.nickname %>
-            <ul class="user__info">
-              <li>
-                <a href= <%= "/users/" %> >マイページ</a>
-                <%= link_to "ログアウト", "/users/" , method: :delete %>
-              </li>
-            </ul>
-          </span>
-          <a class="post" href="">投稿する</a>
-        </div>
-      <% else %>
-        <div class="grid-6">
-          <%= link_to "ログイン", "/users/", class: 'post' %>
-          <%= link_to "新規登録", "/users/", class: 'post' %>
-        </div>
-      <% end %>
-    </div>
-  </header>
+<header>
+<div class="container">
+  <div class="headA">
+  <%= link_to image_tag("logo.png", :size => "120x50", :alt => "アイコン"), root_path %>
+  </div>
+  <nav class="headB">
+    <ul>
+      <li><%= link_to image_tag("logo.png", :size => "50x35", :alt => "アイコン"), user_path(current_user) %></li>
+      <li><%= link_to image_tag("logo.png", :size => "50x35", :alt => "アイコン"), new_user_post_path(current_user) %></li>
+    </ul>
+  </nav>
+</div>
+</header>
 
 <%= yield %>
 
