@@ -16,11 +16,6 @@ class SupportsController < ApplicationController
     #生成したサポートからトークの取り出し
     #redirect_to user_post_support_talks_path({user_id: params[:user_id],post_id: params[:post_id],support_id: support_instance.id})
     redirect_to :controller => "talks", :action => "index", :support_id => @support_instance.id
-
-  end
-
-  def show
-    @talks = Support.find(params[:id]).talks
   end
 
   private
