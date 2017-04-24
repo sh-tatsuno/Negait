@@ -1,4 +1,4 @@
 class Post < ActiveRecord::Base
   belongs_to :user
-  has_many :rooms
+  has_many :supports
 end

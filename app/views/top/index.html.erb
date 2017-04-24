@@ -1,5 +1,5 @@
-
 <% @posts.each do |post|%>
+  <% unless post.user_id == current_user.id%>
   <div>
     <% url = '/users/'+post.user_id.to_s+'/posts/'+post.id.to_s%>
     <% #binding.pry %>
@@ -31,6 +31,7 @@
   </div>
   <%end%>
   <br>
+  <% end %>
 <%end%>
 
 <%= paginate(@posts) %>

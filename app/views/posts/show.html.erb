@@ -1,43 +1,37 @@
 <div>
+  <p>・タイトル</p>
   <p><%= @post.title %></p>
+  <p>・詳細</p>
   <p><%= @post.detail %></p>
 </div>
 
 
 <div>
-<%if @post.user_id == current_user.id%>
-  <!--  投稿を編集・削除・応募してくれた人・部屋一覧 -->
-  <p>
-    <%= link_to "投稿を編集", request.fullpath + '/edit', method: :get %>
-    <%= link_to "投稿を削除", method: :delete %>
-  </p>
+  <%if @post.user_id == current_user.id%>
+    <!--  投稿を編集・削除・応募してくれた人・部屋一覧 -->
+    <p>
+      <%= link_to "投稿を編集", request.fullpath + '/edit', method: :get %>
+      <%= link_to "投稿を削除", method: :delete %>
+    </p>
+
+    <!--  協力してくれた人がいるかどうかで分岐 -->
+    <p>
+      <!-- <div>協力してくれた人と話す</div> -->
+    </p>
+
+  <% end %>
 
 
-  <!--  協力してくれた人がいるかどうかで分岐 -->
-  <p>
-    <div>協力してくれた人と話す</div>
-    <!-- 追加・動作未検証 -->
-    <% if @supports.empty? %>
-      まだ支援を表明してくれている人はいません
-    <% else %>
-      支援を表明してくれている人
-      <% @supports.each do |support|%>
-        <%= link_to "支援者id: " + support.supporter_id.to_s, request.fullpath + '/supports/' + support.id %>
-    <% end %>
-  </p>
-
-<%else%>
   <!--  投稿の応募してくれた人・部屋一覧 -->
-  <!--  if @supports.empty?  -->
+  <% if @support.empty? %>
   <!--  応募を表明していない場合 -->
   <!--  表明ボタンを表示 -->
-  <%= link_to "協力する！", request.fullpath + '/supports/new' %>
-  <!--  else  -->
+    <%= link_to "協力する！", request.fullpath + '/supports/new' %>
+  <% else %>
   <!--  応募を表明している場合 -->
   <!--  チャットを表示 -->
   <!--  チャット内容(@talks) -->
-  <!--  end  -->
+    <%= link_to "トークに進む", request.fullpath + '/supports/' + current_user.id.to_s + '/talks' %>
+  <% end %>
 
-  
-<%end%>
 </div>

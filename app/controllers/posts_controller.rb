@@ -13,8 +13,9 @@ def create
 end
 
 def show
-  #自分に協力する人がいるかチェック
-  @supports = Support.where('post_id = :post_id',{post_id: params[:id]})
+  #自分が協力表明をしているかチェック
+  #current_user.id : ログインしているサポーターのid
+  @support = Support.where('post_id = :post_id and supporter_id = :supporter_id',{post_id: params[:id], supporter_id: current_user.id})
 
   #自分の投稿を確認
   @post = Post.find(params[:id])

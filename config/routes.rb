@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :users do
     resources :posts do
       resources :supports do
-        resources :talks
+        collection do
+          post '/:id'  =>  'supports#create_talk'
+        end
+        resources :talks do
+        end
       end
     end
   end

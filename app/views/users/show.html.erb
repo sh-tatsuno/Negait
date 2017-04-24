@@ -1,13 +1,29 @@
 <h2>Total Posts</h2>
 
 <% @posts.each do |post|%>
-  <% #binding.pry %>
-  <div>
-    <%= link_to post.title, post_path(post) %>
+
+  <!-- 折り畳み展開ポインタ -->
+  <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
+  <a style="cursor:pointer;">▼ <%= post.title %></a>
   </div>
+  <!--// 折り畳み展開ポインタ -->
+
+  <!-- 折り畳まれ部分 -->
+  <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
   <div>
     <%=post.detail%>
   </div>
+  </div>
+  <!--// 折り畳まれ部分 -->
+  <% unless post.supports.empty? %>
+    <div>協力表明してくれた人</div>
+    <% post.supports.each do |support|%>
+      <div>
+        <%= link_to "支援者id: " + support.supporter_id.to_s , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+      </div>
+    <%end%>
+  <% end %>
+
   <%
   date = (14 * (60*60*24) - (Time.now - post.created_at))
   if date > 0
