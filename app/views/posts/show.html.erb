@@ -2,7 +2,7 @@
   <p>・タイトル</p>
   <p><%= @post.title %></p>
   <p>・詳細</p>
-  <p><%= @post.detail %></p>
+  <p><%= simple_format(@post.detail) %></p>
 </div>
 
 
@@ -10,8 +10,8 @@
   <%if @post.user_id == current_user.id%>
     <!--  投稿を編集・削除・応募してくれた人・部屋一覧 -->
     <p>
-      <%= link_to "投稿を編集", request.fullpath + '/edit', method: :get %>
-      <%= link_to "投稿を削除", method: :delete %>
+      <%= link_to "投稿に追記", "/users/#{current_user.id}/posts/#{@post.id}/edit", method: :get %>
+      <%= link_to "投稿を削除", "/users/#{current_user.id}/posts/#{@post.id}", method: :delete %>
     </p>
 
     <!--  協力してくれた人がいるかどうかで分岐 -->

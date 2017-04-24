@@ -1,0 +1,10 @@
+<% url = "/users/" + current_user.id.to_s + "/posts/#{@post.id}" %>
+<%= form_tag(url, method: :patch ) do %>
+  <h3>
+    編集する
+  </h3>
+  <textarea cols="30" name="detail" placeholder="text" rows="10">
+
+  </textarea>
+  <input type="submit" value="SENT">
+<% end %>
