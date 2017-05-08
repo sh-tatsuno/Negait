@@ -1,13 +1,9 @@
-<div class="container">
-  <% if current_user.avatar_file_name.nil? %>
-    <%= link_to image_tag("profile.png", :size => "300x300", :alt => "アイコン") %>
-  <% else %>
-    <%= link_to image_tag(current_user.avatar, :size => "300x300", :alt => "アイコン") %>
-  <% end %>
+<%= form_for @user do |f| %>
 
+<!-- e-mail, password, nickname, sex, company, intruduction, avatar の編集-->
   <div>
   ・ニックネーム<br>
-  <%= current_user.nickname %>
+  <%= f.text_field :nickname, placeholder: 'メッセージ', value: current_user.nickname %>
   </div>
 
   <div>
@@ -22,7 +18,26 @@
 
   <div>
   ・自己紹介<br>
-  <%= company_name(current_user.company) %>
+    <div style="margin: 8px 0">
+      <%= f.text_area :introduction, placeholder: 'メッセージ', value: current_user.introduction%>
+    </div>
   </div>
 
-</div>
+  <div>
+  ・画像<br>
+    <% if current_user.avatar_file_name.nil? %>
+    <%= link_to image_tag("profile.png", :size => "300x300", :alt => "アイコン") %>
+    <% else %>
+    <%= link_to image_tag(current_user.avatar, :size => "300x300", :alt => "アイコン") %>
+    <% end %>
+    <div style="margin: 8px 0">
+      <div class="field">
+        <%= f.file_field :avatar  %>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit %>
+
+  </div>
+<% end %>

@@ -1,3 +1,5 @@
 class Talk < ActiveRecord::Base
-  belongs_to :supports
+  validates :talk, presence: true
+  belongs_to :support
+  belongs_to :user
 end

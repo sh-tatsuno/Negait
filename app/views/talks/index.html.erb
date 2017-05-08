@@ -3,13 +3,14 @@
 <%= render @talks %>
 </div>
 
+
 <%= form_for [@user, @post, @support, @talk], remote: true do |f| %>
   <div style="marsgin: 8px 0">
     <%= f.label :talk, 'コメント', style: { 'margin-right' => 8 } %><br>
-    <%= f.text_field :talk, placeholder: 'コメント', max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+    <%= f.text_area :talk, placeholder: 'コメント', max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
   </div>
   <div class="row">
-    <div class="col10 push1">
+    <div class="push_button">
       <%= button_tag type: "submit", class: "button" do %>
       投稿する
       <i class="icon-arrow-right"></i>

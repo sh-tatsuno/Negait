@@ -2,11 +2,16 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'top#index'
   resources :users do
+    collection do
+      get '/:id/profile'  =>  'users#profile'
+    end
+
     resources :posts do
+      collection do
+        post '/:id'  =>  'posts#complete'
+      end
+
       resources :supports do
-        collection do
-          post '/:id'  =>  'supports#create_talk'
-        end
         resources :talks do
         end
       end

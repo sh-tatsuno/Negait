@@ -1,59 +1,56 @@
-<% if current_user.avatar_file_name.nil? %>
-    <%= link_to image_tag("profile.png", :size => "300x300", :alt => "アイコン"), edit_user_path(current_user) %>
-  <% else %>
-    <%= link_to image_tag(current_user.avatar, :size => "300x300", :alt => "アイコン"), edit_user_path(current_user) %>
-  <% end %>
-
-<h2>Total Posts</h2>
+<h2><%= current_user.nickname %>さんの投稿一覧</h2>
 
 <% @posts.each do |post|%>
+  <div class="post-block">
+    <!-- 折り畳み展開ポインタ -->
+    <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
+    <a style="cursor:pointer;">▼ <%= post.title %></a>
+    </div>
+    <!--// 折り畳み展開ポインタ -->
 
-  <!-- 折り畳み展開ポインタ -->
-  <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
-  <a style="cursor:pointer;">▼ <%= post.title %></a>
-  </div>
-  <!--// 折り畳み展開ポインタ -->
+    <!-- 折り畳まれ部分 -->
+    <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
+    <div>
+      <%=post.detail%>
+    </div>
+    </div>
+    <!--// 折り畳まれ部分 -->
+    <% unless post.supports.empty? %>
+      <div>協力表明してくれた人</div>
+      <% post.supports.each do |support|%>
+        <div>
+          <% if support.notification == 1 %>
+            <%= link_to "支援者の名前: " + User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+          <% else %>
+            <%= link_to "支援者名前: " + User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+          <% end %>
+        </div>
+      <%end%>
+    <% end %>
 
-  <!-- 折り畳まれ部分 -->
-  <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
-  <div>
-    <%=post.detail%>
-  </div>
-  </div>
-  <!--// 折り畳まれ部分 -->
-  <% unless post.supports.empty? %>
-    <div>協力表明してくれた人</div>
-    <% post.supports.each do |support|%>
-      <div>
-        <%= link_to "支援者id: " + support.supporter_id.to_s , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
-      </div>
-    <%end%>
-  <% end %>
-
-  <%
-  date = (14 * (60*60*24) - (Time.now - post.created_at))
-  if date > 0
-  %>
-  <div>
-    残り
     <%
     date = (14 * (60*60*24) - (Time.now - post.created_at))
-    day = (date / (60*60*24)).floor
-    date -= day * (60*60*24)
-    hour = (date / (60*60)).floor
-    min = ((date % (60*60))/60).floor
+    if date > 0
     %>
-    <%= day %>日
-    <%= hour %>時間
-    <%= min %>分
+    <div>
+      残り
+      <%
+      date = (14 * (60*60*24) - (Time.now - post.created_at))
+      day = (date / (60*60*24)).floor
+      date -= day * (60*60*24)
+      hour = (date / (60*60)).floor
+      min = ((date % (60*60))/60).floor
+      %>
+      <%= day %>日
+      <%= hour %>時間
+      <%= min %>分
+    </div>
+    <%else%>
+    <div>
+      時間完了
+    </div>
+    <%end%>
+    <%= link_to "投稿を確認", :controller => "posts", :action => "show", user_id: current_user.id, id: post.id %>
   </div>
-  <%else%>
-  <div>
-    時間完了
-  </div>
-  <%end%>
-  <%= link_to "投稿を確認", :controller => "posts", :action => "show", user_id: current_user.id, id: post.id %>
-
-
-  <br><br>
+  <div class="margin"></div>
 <%end%>

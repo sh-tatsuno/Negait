@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424085512) do
+ActiveRecord::Schema.define(version: 20170508014535) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -19,14 +19,18 @@ ActiveRecord::Schema.define(version: 20170424085512) do
     t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "completed",  limit: 4,     default: 0
+    t.string   "category",   limit: 255
   end
 
   create_table "supports", force: :cascade do |t|
     t.integer  "post_id",      limit: 4
     t.integer  "supporter_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "message",      limit: 255
+    t.integer  "notification", limit: 4,   default: 0
+    t.integer  "user_id",      limit: 4
   end
 
   create_table "talks", force: :cascade do |t|
@@ -35,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170424085512) do
     t.text     "talk",                limit: 65535
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.integer  "user_id",             limit: 4
   end
 
   create_table "users", force: :cascade do |t|

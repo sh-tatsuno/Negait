@@ -1,7 +1,31 @@
-<li>
-  <% if talk.poster_or_supporter == 0 %>
-    <%= talk.talk %>
-  <% else %>
-    <b><%= talk.talk %></b>
-  <% end %>
-</li>
+<% if (talk.poster_or_supporter == 1 and talk.support.user_id == current_user.id) or (talk.poster_or_supporter == 0 and talk.support.user_id != current_user.id) %>
+  <div class="chat-box">
+    <div class="chat-face">
+      <% if talk.user.avatar_file_name.nil? %>
+        <%= link_to image_tag("profile.png", :size => "90x90", :alt => "アイコン") %>
+      <% else %>
+        <%= link_to image_tag(talk.user.avatar, :size => "90x90", :alt => "アイコン") %>
+      <% end %>
+    </div>
+    <div class="chat-area">
+      <div class="chat-hukidashi">
+        <%= simple_format(talk.talk) %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="chat-box2">
+    <div class="chat-face2">
+      <% if talk.user.avatar_file_name.nil? %>
+        <%= link_to image_tag("profile.png", :size => "90x90", :alt => "アイコン") %>
+      <% else %>
+        <%= link_to image_tag(talk.user.avatar, :size => "90x90", :alt => "アイコン") %>
+      <% end %>
+    </div>
+    <div class="chat-area2">
+      <div class="chat-hukidashi2">
+        <%= simple_format(talk.talk) %>
+      </div>
+    </div>
+  </div>
+<% end %>

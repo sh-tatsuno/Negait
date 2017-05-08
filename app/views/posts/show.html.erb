@@ -1,37 +1,43 @@
-<div>
+<div class="post-content">
   <p>・タイトル</p>
   <p><%= @post.title %></p>
+  <p>・投稿者</p>
+  <p><%= link_to @post.user.nickname, "/users/#{@post.user.id}/profile" %></p>
+  <p>・カテゴリ</p>
+  <p><%= category_name(@post.category) %></p>
   <p>・詳細</p>
   <p><%= simple_format(@post.detail) %></p>
 </div>
+<div class="margin"></div>
 
+<div class="post-move">
+  <%if date_judge(@post.created_at, 14)[:timeend] == 0 and @post.completed == 0%>
+    <%if @post.user_id == current_user.id%>
+      <!--  投稿を編集・削除・応募してくれた人・部屋一覧 -->
+      <p>
+        <%= link_to "お願いに追記", "/users/#{current_user.id}/posts/#{@post.id}/edit", method: :get %>
+        <%= link_to "お願いを削除", "/users/#{current_user.id}/posts/#{@post.id}", method: :delete %>
+      </p>
+        <%= link_to "お願いを完了", "/users/#{current_user.id}/posts/#{@post.id}", method: :complete %>
 
-<div>
-  <%if @post.user_id == current_user.id%>
-    <!--  投稿を編集・削除・応募してくれた人・部屋一覧 -->
-    <p>
-      <%= link_to "投稿に追記", "/users/#{current_user.id}/posts/#{@post.id}/edit", method: :get %>
-      <%= link_to "投稿を削除", "/users/#{current_user.id}/posts/#{@post.id}", method: :delete %>
-    </p>
+      <!--  協力してくれた人がいるかどうかで分岐 -->
+      <p>
+        <!-- <div>協力してくれた人と話す</div> -->
+      </p>
 
-    <!--  協力してくれた人がいるかどうかで分岐 -->
-    <p>
-      <!-- <div>協力してくれた人と話す</div> -->
-    </p>
-
-  <% end %>
-
-
-  <!--  投稿の応募してくれた人・部屋一覧 -->
-  <% if @support.empty? %>
-  <!--  応募を表明していない場合 -->
-  <!--  表明ボタンを表示 -->
-    <%= link_to "協力する！", request.fullpath + '/supports/new' %>
-  <% else %>
-  <!--  応募を表明している場合 -->
-  <!--  チャットを表示 -->
-  <!--  チャット内容(@talks) -->
-    <%= link_to "トークに進む", request.fullpath + '/supports/' + current_user.id.to_s + '/talks' %>
+    <% else %>
+        <!--  投稿の応募してくれた人・部屋一覧 -->
+        <% if @support.empty? %>
+        <!--  応募を表明していない場合 -->
+        <!--  表明ボタンを表示 -->
+          <%= link_to "協力する！", request.fullpath + '/supports/new' %>
+        <% else %>
+        <!--  応募を表明している場合 -->
+        <!--  チャットを表示 -->
+        <!--  チャット内容(@talks) -->
+          <%= link_to "トークに進む", request.fullpath + '/supports/' + @support[0].id.to_s + '/talks' %>
+        <% end %>
+    <% end %>
   <% end %>
 
 </div>

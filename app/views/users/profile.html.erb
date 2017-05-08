@@ -1,0 +1,36 @@
+<div class="container">
+  <% if @user.avatar_file_name.nil? %>
+    <%= link_to image_tag("profile.png", :size => "300x300", :alt => "アイコン") %>
+  <% else %>
+    <%= link_to image_tag(@user.avatar, :size => "300x300", :alt => "アイコン") %>
+  <% end %>
+
+  <div class="margin"></div>
+
+  <div>
+  ・ニックネーム<br>
+  <%= @user.nickname %>
+  </div>
+
+  <div>
+  ・性別<br>
+  <%= gender_name(@user.sex) %>
+  </div>
+
+  <div>
+  ・所属会社<br>
+  <%= company_name(@user.company) %>
+  </div>
+
+  <div>
+  ・自己紹介
+  <% unless @user.introduction.nil? %>
+    <%= simple_format(@user.introduction) %>
+  <% end %>
+  </div>
+
+  <%if current_user.id == @user_id%>
+  <%= link_to "プロフィールを編集する", :action => 'edit' %>
+  <% end %>
+
+</div>

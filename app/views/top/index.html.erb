@@ -1,37 +1,62 @@
+<h2>みんなのお願い一覧</h2>
+
+<div class="search">
+カテゴリを絞り込む
+<%= form_tag('/', method: :get) do %>
+  <select id="category" name="category">
+    <option value="all"　selected>全て</option>
+    <option value="colleages">仲間募集</option>
+    <option value="study">勉強会開催</option>
+    <option value="items">物が欲しい/いらない</option>
+    <option value="consultation">相談に乗って欲しい</option>
+    <option value="introduction">紹介したい人がいる</option>
+    <option value="free_talking">よもやま</option>
+    <option value="others">その他</option>
+  </select>
+  <button class="btn-search" title="検索" type="submit"></button>
+<% end %>
+</div>
+
+
 <% @posts.each do |post|%>
   <% unless post.user_id == current_user.id%>
-  <div>
-    <% url = '/users/'+post.user_id.to_s+'/posts/'+post.id.to_s%>
-    <% #binding.pry %>
-    <%= link_to post.title, url %>
-  </div>
-  <div>
-    <%=post.detail%>
-  </div>
-  <%
-  date = (14 * (60*60*24) - (Time.now - post.created_at))
-  if date > 0
-  %>
-  <div>
-    残り
-    <%
-    date = (14 * (60*60*24) - (Time.now - post.created_at))
-    day = (date / (60*60*24)).floor
-    date -= day * (60*60*24)
-    hour = (date / (60*60)).floor
-    min = ((date % (60*60))/60).floor
-    %>
-    <%= day %>日
-    <%= hour %>時間
-    <%= min %>分
-  </div>
-  <%else%>
-  <div>
-    時間完了
-  </div>
-  <%end%>
-  <br>
+    <% if date_judge(post.created_at, 14)[:timeend] == 1 %>
+    <div class="post-block finished">
+    <% else %>
+    <div class="post-block">
+    <% end %>
+      <div>
+        <% url = '/users/'+post.user_id.to_s+'/posts/'+post.id.to_s%>
+        <% #binding.pry %>
+        <%= link_to post.title, url %>
+      </div>
+      <div>
+        投稿者：<%=post.user.nickname%>
+      </div>
+      <div>
+        所属：<%=company_name(post.user.company)%>
+      </div>
+      <div>支援数：<%=post.supports.size%></div>
+      <div>
+      状態：
+      <% if post.completed == 1 %>
+          願いは達成されました
+      <%else%>
+        <% if date_judge(post.created_at, 14)[:timeend] == 1 %>
+          期限満了
+        <% else %>
+          募集中(残り<%= date_judge(post.created_at, 14)[:date] %>)
+        <% end %>
+      <%end%>
+      </div>
+    </div>
+    <div class="margin"></div>
   <% end %>
-<%end%>
+
+<% end %>
 
 <%= paginate(@posts) %>
+
+<div>
+   <%= link_to 'サインアウト', "/users/sign_out", method: :delete %>
+</div>

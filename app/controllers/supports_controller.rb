@@ -12,7 +12,7 @@ class SupportsController < ApplicationController
 
     #binding.pry
     #初期トークの生成
-    Talk.create(support_id: @support_instance.id, poster_or_supporter: 1, talk: @support_instance[:message])
+    Talk.create(support_id: @support_instance.id, poster_or_supporter: 1, talk: @support_instance[:message], user_id: current_user.id)
     #生成したサポートからトークの取り出し
     #redirect_to user_post_support_talks_path({user_id: params[:user_id],post_id: params[:post_id],support_id: support_instance.id})
     redirect_to :controller => "talks", :action => "index", :support_id => @support_instance.id
@@ -20,7 +20,7 @@ class SupportsController < ApplicationController
 
   private
   def create_params
-    params.require(:support).permit(:supporter_id, :post_id, :message).merge({supporter_id: current_user.id, post_id: params[:post_id]})
+    params.require(:support).permit(:supporter_id, :post_id, :message).merge({supporter_id: current_user.id, post_id: params[:post_id], user_id: params[:user_id]})
   end
 
 end
