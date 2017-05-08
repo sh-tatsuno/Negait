@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   def show
     current_user.supports.update_all(notification: 0)
     @posts = current_user.posts.order("created_at DESC").page(params[:page]).per(10)
+
+    #自分が協力した投稿
+    @supports = Support.where('supporter_id = :supporter_id', {supporter_id: current_user.id}).order("created_at DESC").page(params[:page]).per(10)
+
   end
 
   def edit

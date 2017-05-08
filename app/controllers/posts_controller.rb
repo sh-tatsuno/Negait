@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 
     #自分の投稿を確認
     @post = Post.find(params[:id])
+
     end
 
   def edit
