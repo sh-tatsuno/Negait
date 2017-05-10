@@ -1,4 +1,4 @@
-require 'Time'
+#require 'Time'
 class TopController < ApplicationController
 
   def index
