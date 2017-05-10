@@ -208,7 +208,6 @@ DEPENDENCIES
   pry-rails
   rails (= 4.2.6)
   rails_12factor
-  rake (< 11.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
