@@ -51,4 +51,4 @@ production:
   <<: *default
   database: negait_production
   username: negait
-  password: <%= ENV['NEGAIT_DATABASE_PASSWORD'] %>
+  password:
