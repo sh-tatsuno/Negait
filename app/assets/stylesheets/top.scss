@@ -11,33 +11,41 @@
 }
 
 .tab-menu {
-  width: 80%;
-  padding: 3%;
+  width: 100%;
+  padding-bottom: 3%;
+  padding-top: 3%;
 
   ul { /* .tab-menuの中のulに対する記述 */
     margin: 0;
     padding: 0;
-    margin-top: 50px;
   }
 
   li { /* .tab-menuの中のli */
-    display: inline-block;
-    width: 120px;
+
     height: 22px;
     padding: 10px 10px 5px;
     cursor: pointer;
-    background-color: #AECD6A;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
     font-size: 14px;
     color: #fff;
     text-align: center;
+    // background: url(/assets/help.png);
+    // list-style-image: url('./assets/images/help.png');
 
-    &.selected {/* .tab-menuの中のliの内、.selectedが与えられているものに対する記述 */
-      background-color: #fff;
-      color: #AECD6A;
+    display: inline-block;
+    width: 46%;
+
+    .change{
+      background-color: #FFFFFF;
+
+      &.selected {/* .tab-menuの中のliの内、.selectedが与えられているものに対する記述 */
+      background-color: #C7F8E9;
+      }
     }
   }
 }
+
+
 
 .contents {
 

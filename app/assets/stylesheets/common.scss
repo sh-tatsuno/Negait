@@ -18,6 +18,12 @@ body {
   padding-right: 20px;
   margin-bottom: 20px;
   background-color: #F0FFF0;
+
+  font-size: 16px;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
 }
 
 /* ヘッダー */
@@ -27,21 +33,24 @@ header {
   width: 100%;
   background-color: white;
   position: fixed;
-  height: 70px;
+  height: 74px;
   //background-color: #F0FFFF;
   background-color: $base;
 }
 
 
+
 /* ヘッダーA: サイト名 */
 .headA {
-  padding-left: 20px;
+  padding-left: 10px;
+  @media (min-width: 400px) {
+    padding-left: 20px;
+  }
 }
-
 
 /* ヘッダーB： ナビゲーションメニュー */
 .headB ul {
-  margin: 0;
+  margin: auto;
   padding-right: 20px;
   list-style: none;
 }
@@ -50,7 +59,6 @@ header {
   display: block;
   padding: 15px;
   color: inherit;
-  font-size: 12px;
   text-decoration: none;
 }
 
@@ -65,7 +73,7 @@ header {
   height: 10px;
 }
 
-@media (min-width: 768px) {
+
   header .container {
     display: flex;
     align-items: center;
@@ -79,7 +87,7 @@ header {
   .headB ul {
     display: flex;
   }
-}
+
 
 
 .button {
@@ -114,6 +122,7 @@ header {
   padding: 3%;
   background-color: white;
   margin: auto;
+  align: center;
 }
 
 .center-block{
@@ -128,4 +137,20 @@ header {
 
 .completed{
   background-color: #FAFAD2;
+}
+
+/*セレクトボックス*/
+.select-box01 select {
+  padding: 10px;
+  padding-right: 30px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #999;
+  background: #eee;
+  background: url(arrow01.png) right 50% no-repeat, -webkit-linear-gradient(top, #fff 0%,#efebe1 100%);
+  background: url(arrow01.png) right 50% no-repeat, linear-gradient(to bottom, #fff 0%,#efebe1 100%);
+  background-size: 20px, 100%;
 }

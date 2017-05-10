@@ -1,6 +1,6 @@
 <h2>みんなのお願い一覧</h2>
 
-<div class="search">
+<div class="search select-box01">
 カテゴリを絞り込む
 <%= form_tag('/', method: :get) do %>
   <select id="category" name="category">
@@ -13,7 +13,7 @@
     <option value="free_talking">よもやま</option>
     <option value="others">その他</option>
   </select>
-  <button class="btn-search" title="検索" type="submit">絞り込み</button>
+  <button class="button" title="検索" type="submit">絞り込み</button>
 <% end %>
 </div>
 

@@ -1,111 +1,27 @@
 <h2><%= current_user.nickname %>さんの投稿一覧</h2>
 
-
-
 <!-- 切り替え -->
 <div class="center-block">
   <div class="tab-menu">
     <ul>
-      <li id="switch-left" class="selected">自分の投稿</li>
-      <li id="switch-right">支援した投稿</li>
+      <li>
+        <img src="<%= asset_path "help_clear.png" %>" alt="" width="200" height="200"  id="switch-left" class="change selected"/>
+      </li>
+      <li>
+        <img src="<%= asset_path "support_clear.png" %>" alt="" width="200" height="200" class="change" id="switch-right"/>
+      </li>
     </ul>
   </div>
 
     <div class="contents">
       <!-- 左側要素 -->
       <div class="switch-left">
-        <% @posts.each do |post|%>
-          <div class="post-block">
-            <!-- 折り畳み展開ポインタ -->
-            <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
-            <a style="cursor:pointer;">▼ <%= post.title %></a>
-            </div>
-            <!--// 折り畳み展開ポインタ -->
-
-            <!-- 折り畳まれ部分 -->
-            <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
-            <div>
-              <%=post.detail%>
-            </div>
-            </div>
-            <!--// 折り畳まれ部分 -->
-            <% unless post.supports.empty? %>
-              <div>協力表明してくれた人</div>
-              <% post.supports.each do |support|%>
-                <div>
-                  <% if support.notification == 1 %>
-                    <%= link_to "支援者の名前: " + User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
-                  <% else %>
-                    <%= link_to "支援者名前: " + User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
-                  <% end %>
-                </div>
-              <%end%>
-            <% end %>
-
-            <%
-            date = (14 * (60*60*24) - (Time.now - post.created_at))
-            if date > 0
-            %>
-            <div>
-              残り
-              <%
-              date = (14 * (60*60*24) - (Time.now - post.created_at))
-              day = (date / (60*60*24)).floor
-              date -= day * (60*60*24)
-              hour = (date / (60*60)).floor
-              min = ((date % (60*60))/60).floor
-              %>
-              <%= day %>日
-              <%= hour %>時間
-              <%= min %>分
-            </div>
-            <%else%>
-            <div>
-              時間完了
-            </div>
-            <%end%>
-            <%= link_to "投稿を確認", :controller => "posts", :action => "show", user_id: current_user.id, id: post.id %>
-          </div>
-          <div class="margin"></div>
-        <%end%>
+        <%= render @posts %>
       </div>
 
       <!-- 右側要素 -->
       <div class="switch-right">
-        <% @supports.each do |support|%>
-          <div class="post-block">
-            <!-- 折り畳み展開ポインタ -->
-            <div onclick="obj=document.getElementById('<%='open-' + support.post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
-            <a style="cursor:pointer;">▼ <%= support.post.title %></a>
-            </div>
-            <!--// 折り畳み展開ポインタ -->
-
-            <%
-            date = (14 * (60*60*24) - (Time.now - support.post.created_at))
-            if date > 0
-            %>
-            <div>
-              残り
-              <%
-              date = (14 * (60*60*24) - (Time.now - support.post.created_at))
-              day = (date / (60*60*24)).floor
-              date -= day * (60*60*24)
-              hour = (date / (60*60)).floor
-              min = ((date % (60*60))/60).floor
-              %>
-              <%= day %>日
-              <%= hour %>時間
-              <%= min %>分
-            </div>
-            <%else%>
-            <div>
-              時間完了
-            </div>
-            <%end%>
-            <%= link_to "投稿を確認", :controller => "posts", :action => "show", user_id: support.user_id, id: support.post.id %>
-          </div>
-        <div class="margin"></div>
-      <%end%>
+        <%= render @supports %>
       </div>
     </div>
 </div>
