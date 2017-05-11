@@ -25,3 +25,14 @@ $(window).on("load", function() {
     $(selected + " div").show(); // クリックされたボタンに対応する要素を表示する
   });
 });
+
+function _submit(){
+  //var inputs = $('#talk_talk').val();
+  //alert(inputs);
+  $('#talk_talk').submit();
+  $("#talk_talk").val("");
+}
+
+
+
+

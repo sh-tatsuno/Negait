@@ -1,30 +1,30 @@
 <% if (talk.poster_or_supporter == 1 and talk.support.user_id == current_user.id) or (talk.poster_or_supporter == 0 and talk.support.user_id != current_user.id) %>
-  <div class="chat-box">
-    <div class="chat-face">
+  <div class="other-chat-box">
+    <div class="other-chat-face">
       <% if talk.user.avatar_file_name.nil? %>
         <%= link_to image_tag("profile.png", :size => "90x90", :alt => "アイコン") %>
       <% else %>
         <%= link_to image_tag(talk.user.avatar, :size => "90x90", :alt => "アイコン") %>
       <% end %>
     </div>
-    <div class="chat-area">
-      <div class="chat-hukidashi">
-        <%= simple_format(talk.talk) %>
+    <div class="other-chat-area">
+      <div class="other-chat-hukidashi">
+        <%= simple_format(talk.talk.gsub(/\R/, "<br/>"), {}, wrapper_tag: "div") %>
       </div>
     </div>
   </div>
 <% else %>
-  <div class="chat-box2">
-    <div class="chat-face2">
+  <div class="my-chat-box">
+    <div class="my-chat-face">
       <% if talk.user.avatar_file_name.nil? %>
         <%= link_to image_tag("profile.png", :size => "90x90", :alt => "アイコン") %>
       <% else %>
         <%= link_to image_tag(talk.user.avatar, :size => "90x90", :alt => "アイコン") %>
       <% end %>
     </div>
-    <div class="chat-area2">
-      <div class="chat-hukidashi2">
-        <%= simple_format(talk.talk) %>
+    <div class="my-chat-area">
+      <div class="my-chat-hukidashi">
+        <%= simple_format(talk.talk.gsub(/\R/, "<br/>"), {}, wrapper_tag: "div") %>
       </div>
     </div>
   </div>

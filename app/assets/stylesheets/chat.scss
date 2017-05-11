@@ -1,29 +1,66 @@
 /***********************************
 チャット風レイアウト
 ************************************/
-/*画像左側のチャット*/
-.chat-box {
+/*画像右側のチャット*/
+.my-chat-box{
     width: 100%;
     height: auto;
     overflow: hidden;
     margin-bottom: 20px;
 }
-.chat-face {
-    float: left;
-    margin-right: -120px;
+.my-chat-face {
+    float: right;
+    margin-left: -120px;
 }
-.chat-face img{
+.my-chat-face img{
 　　width: 90px;
     height: 90px;
     border-radius: 30px;
     border: 1px solid #ccc;
     box-shadow: 0 0 4px #ddd;
 }
-.chat-area {
+.my-chat-area {
+    width: 100%;
+    float: left;
+}
+.my-chat-hukidashi {
+    z-index: -10;
+    display: inline-block;
+    padding: 15px 20px;
+    margin-right: 120px;
+    margin-top: 8px;
+    border-radius: 10px;
+    position: relative;
+    background-color: #BCF5A9;
+    float: right;
+}
+.my-chat-hukidashi p{
+    margin-bottom: 0px;
+}
+
+/*画像左側のチャット*/
+.other-chat-box {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.other-chat-face {
+    float: left;
+    margin-right: -120px;
+}
+.other-chat-face img{
+　　width: 90px;
+    height: 90px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 4px #ddd;
+}
+.other-chat-area {
     width: 100%;
     float: right;
 }
-.chat-hukidashi {
+.other-chat-hukidashi {
     z-index: -10;
     display: inline-block;
     padding: 15px 20px;
@@ -33,7 +70,7 @@
     position: relative;
     background-color: #D9F0FF;
 }
-.chat-hukidashi p{
+.other-chat-hukidashi p{
     margin-bottom: 0px;
 }
 /*三角部分*/
@@ -51,42 +88,7 @@
     border-color: transparent #D9F0FF transparent transparent;
 }
 */
-/*画像右側のチャット*/
-.chat-box2{
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-.chat-face2 {
-    float: right;
-    margin-left: -120px;
-}
-.chat-face2 img{
-　　width: 90px;
-    height: 90px;
-    border-radius: 30px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 4px #ddd;
-}
-.chat-area2 {
-    width: 100%;
-    float: left;
-}
-.chat-hukidashi2 {
-    z-index: -10;
-    display: inline-block;
-    padding: 15px 20px;
-    margin-right: 120px;
-    margin-top: 8px;
-    border-radius: 10px;
-    position: relative;
-    background-color: #BCF5A9;
-    float: right;
-}
-.chat-hukidashi2 p{
-    margin-bottom: 0px;
-}
+
 /*三角部分*/
 /*
 .chat-hukidashi2:after {

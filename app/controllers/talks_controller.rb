@@ -4,7 +4,13 @@ class TalksController < ApplicationController
     @user = User.find(params[:user_id])
     @post = Post.find(params[:post_id])
     @support = Support.find(params[:support_id])
+
+    #ユーザー・サポーターのid
+    @poster = User.find(@support.user_id)
+    @supporter = User.find(@support.supporter_id)
+
     @talk = Talk.new
+    gon.watch.talks = @talks
   end
 
   def create

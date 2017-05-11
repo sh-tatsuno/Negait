@@ -1,17 +1,90 @@
+<script>
+var talks_update;
+
+if (document.URL.match('/talks')) {
+  var current_user_id = <%= current_user.id %>;
+  var poster_id = <%= @poster.id %>;
+  var supporter_id = <%= @supporter.id %>;
+  var poster_img;
+  var supporter_img;
+  <% if @poster.avatar_file_name.nil? %>
+    poster_img = '<%= link_to image_tag("profile.png", :size => "90x90") %>';
+  <% else %>
+    poster_img = '<%= link_to image_tag(@poster.avatar, :size => "90x90") %>';
+  <% end %>
+
+  <% if @supporter.avatar_file_name.nil? %>
+    supporter_img = '<%= link_to image_tag("profile.png", :size => "90x90") %>';
+  <% else %>
+    supporter_img = '<%= link_to image_tag(@supporter.avatar, :size => "90x90") %>';
+  <% end %>
+
+  var my_img;
+  var other_img;
+  <% if current_user.id == @poster.id %>
+    my_img = poster_img;
+    other_img = supporter_img;
+  <% elsif current_user.id == @supporter.id%>
+    my_img = supporter_img;
+    other_img = poster_img;
+  <% end %>
+
+  talks_update = function(talks) {
+
+    var result = $(".talk-ajax");
+
+    var html = '';
+
+    for (var i = 0; i < talks.length; i++) {
+      talks[i].talk = talks[i].talk.replace(/\r?\n/g,"<br />");
+      if (talks[i].user_id == current_user_id){
+        html +=
+         '<div class="my-chat-box"><div class="my-chat-face">' +
+         my_img +
+         '</div><div class="my-chat-area"><div class="my-chat-hukidashi"><div>' +
+         talks[i].talk +
+         '</div></div></div></div>';
+      }
+      else{
+        html +=
+         '<div class="other-chat-box"><div class="other-chat-face">' +
+         other_img +
+         '</div><div class="other-chat-area"><div class="other-chat-hukidashi"><div>' +
+         talks[i].talk +
+         '</div></div></div></div>';
+      }
+    }
+
+    result.text("");
+    result.append(html);
+
+    //$(".talk-ajax").html("<%= j(render @talks) %>");
+    return result;
+  };
+
+
+  gon.watch('talks', {
+    interval: 1000
+  }, talks_update);
+} else {
+  gon.unwatch('talks', talks_update);
+}
+
+</script>
+
 <!-- トーク内容の列挙 -->
 <div class="talk-ajax">
-<%= render @talks %>
+  <%= render @talks %>
 </div>
 
-
 <%= form_for [@user, @post, @support, @talk], remote: true do |f| %>
-  <div style="marsgin: 8px 0">
+  <div style="margin: 8px 0">
     <%= f.label :talk, 'コメント', style: { 'margin-right' => 8 } %><br>
     <%= f.text_area :talk, placeholder: 'コメント', max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
   </div>
   <div class="row">
     <div class="push_button">
-      <%= button_tag type: "submit", class: "button" do %>
+      <%= button_tag type: "submit", class: "button", :onclick=>"_submit()" do %>
       投稿する
       <i class="icon-arrow-right"></i>
       <% end %>

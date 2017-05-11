@@ -53,3 +53,5 @@ gem 'kaminari'
 gem 'devise'
 gem 'paperclip'
 gem 'jquery-turbolinks'
+gem 'gon'
+
