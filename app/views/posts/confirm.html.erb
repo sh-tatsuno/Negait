@@ -1,0 +1,20 @@
+<%= form_for [@user, @post] do |f| %>
+  <div class="field">
+    title: <%= @post.title %>
+    <%= f.hidden_field :title %>
+  </div>
+  <div class="field">
+    category: <%= category_name(@post.category) %>
+    <%= f.hidden_field :category %>
+  </div>
+  <div class="field">
+    detail: <%= @post.detail %>
+    <%= f.hidden_field :detail %>
+  </div>
+  <div class="actions">
+    <%= link_to '戻る', :back %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'create!' %>
+  </div>
+<% end %>

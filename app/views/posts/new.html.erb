@@ -1,5 +1,5 @@
 <div class="post-new">
-  <%= form_for [@user, @post] do |f| %>
+  <%= form_for [@user, @post], url: {action: 'confirm'} do |f| %>
   <div style="margin: 8px 0">
     <%= f.label :title, 'タイトル', style: { 'margin-right' => 8 } %><br>
     <%= f.text_field :title, placeholder: 'タイトル', max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>

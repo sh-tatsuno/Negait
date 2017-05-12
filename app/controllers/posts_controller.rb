@@ -13,6 +13,12 @@ class PostsController < ApplicationController
     redirect_to controller: :users, action: :show, id: current_user.id
   end
 
+  def confirm
+    @user = User.find(params[:user_id])
+    @post = Post.new(create_params) # <=POSTされたパラメータを取得
+    render :new if @post.invalid? # <=バリデーションチェックNGなら戻す
+  end
+
   def show
     #自分が協力表明をしているかチェック
     #current_user.id : ログインしているサポーターのid

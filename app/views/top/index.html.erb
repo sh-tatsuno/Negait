@@ -17,7 +17,6 @@
 <% end %>
 </div>
 
-
 <% @posts.each do |post|%>
   <% unless post.user_id == current_user.id%>
     <% if date_judge(post.created_at, 14)[:timeend] == 1 %>
