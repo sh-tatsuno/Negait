@@ -4,7 +4,7 @@
     <%= f.text_area :message, placeholder: 'メッセージ', max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
   </div>
   <div>
-    <%= button_tag type: "submit", class: "button" do %>
+    <%= button_tag type: "submit", class: "button", data: { confirm: '協力メッセージを送ってよろしいですか？' } do %>
     投稿する<i class="icon-arrow-right"></i>
     <% end %>
   </div>
