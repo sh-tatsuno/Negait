@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: hmbpech8b
+  api_key: '447992134396323'
+  api_secret: DiH4g-v_omKT0trbkKUaHdtvj1o
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: hmbpech8b
+  api_key: '447992134396323'
+  api_secret: DiH4g-v_omKT0trbkKUaHdtvj1o
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: hmbpech8b
+  api_key: '447992134396323'
+  api_secret: DiH4g-v_omKT0trbkKUaHdtvj1o
+  enhance_image_tag: true
+  static_image_support: false
