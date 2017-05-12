@@ -54,5 +54,6 @@ gem 'devise'
 gem 'paperclip'
 gem 'jquery-turbolinks'
 gem 'gon'
+gem 'paperclip-cloudinary'
 gem 'cloudinary'
-
+gem 'carrierwave'
