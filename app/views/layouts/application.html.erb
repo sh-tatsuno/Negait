@@ -17,7 +17,7 @@
   <div class="container">
     <% if user_signed_in? %>
       <div class="headA">
-      <%= link_to image_tag("logo.png", :size => "120x50", :alt => "アイコン"), root_path %>
+      <a href = "<%= root_path %>"><img src="<%= asset_path "logo.png" %>" alt="" width="120" height="50" /></a>
       </div>
       <nav class="headB">
         <ul>
@@ -27,12 +27,18 @@
             <li><%= link_to image_tag(current_user.avatar, :size => "35x35", :alt => "アイコン"), profile_user_path(current_user) %></li>
           <% end %>
 
-          <li><%= link_to image_tag("upload.png", :size => "35x35", :alt => "アイコン"), new_user_post_path(current_user) %></li>
+          <li>
+          <a href = "<%= new_user_post_path(current_user) %>"><img src="<%= asset_path "upload.png" %>" alt="" width="35" height="35" /></a>
+          </li>
 
           <% if current_user.supports.sum(:notification) >0  %>
-            <li><%= link_to image_tag("suzu_3.png", :size => "35x35", :alt => "アイコン"), user_path(current_user) %></li>
+            <li>
+            <a href = "<%= user_path(current_user) %>"><img src="<%= asset_path "suzu_3.png" %>" alt="" width="35" height="35" /></a>
+            </li>
           <% else %>
-            <li><%= link_to image_tag("suzu_2.png", :size => "35x35", :alt => "アイコン"), user_path(current_user) %></li>
+            <li>
+            <a href = "<%= user_path(current_user) %>"><img src="<%= asset_path "suzu_2.png" %>" alt="" width="35" height="35" /></a>
+            </li>
           <% end %>
         </ul>
       </nav>

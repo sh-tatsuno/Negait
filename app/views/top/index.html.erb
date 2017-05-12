@@ -19,7 +19,7 @@
 
 <% @posts.each do |post|%>
   <% unless post.user_id == current_user.id%>
-    <% if date_judge(post.created_at, 14)[:timeend] == 1 %>
+    <% if date_judge(post.created_at, 14)[:timeend] == 1 or post.completed == 1 %>
     <div class="post-block finished">
     <% else %>
     <div class="post-block">

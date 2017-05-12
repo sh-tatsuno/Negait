@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   end
 
   def complete
-    Post.find(params[:id]).update('completed = 1')
+    Post.find(params[:id]).update(completed: 1)
     redirect_to action: :show, id: params[:id]
   end
 

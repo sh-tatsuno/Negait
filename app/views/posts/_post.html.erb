@@ -18,7 +18,14 @@
         <% if support.notification == 1 %>
           <font color=#ff0000><%= link_to User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %></font>
         <% else %>
-          <%= link_to User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+          <div style="float: left">
+            <%= link_to User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+          </div>
+          <div style="float: right">
+            <%= link_to "トークに進む" , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+          <!--&nbsp;&nbsp; 協力を消す-->
+          </div>
+          <div style="clear: both;"></div>
         <% end %>
       </div>
     <%end%>

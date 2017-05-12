@@ -16,9 +16,9 @@
       <!--  投稿を編集・削除・応募してくれた人・部屋一覧 -->
       <p>
         <%= link_to "お願いに追記", "/users/#{current_user.id}/posts/#{@post.id}/edit", method: :get %>
-        <%= link_to "お願いを削除", "/users/#{current_user.id}/posts/#{@post.id}", method: :delete %>
+        <%= link_to "お願いを削除", "/users/#{current_user.id}/posts/#{@post.id}", method: :delete, data: { confirm: '本当にお願いを削除してよろしいですか？'} %>
       </p>
-        <%= link_to "お願いを完了", "/users/#{current_user.id}/posts/#{@post.id}", method: :complete %>
+        <%= link_to "お願いを完了", "/users/#{current_user.id}/posts/#{@post.id}", method: :complete, data: { confirm: '本当にお願いを完了してよろしいですか？(完了を押すと投稿は残りますがトークは見れなくなります)'}  %>
 
       <!--  協力してくれた人がいるかどうかで分岐 -->
       <p>
