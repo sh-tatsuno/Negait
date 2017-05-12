@@ -7,9 +7,12 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :supports
 
+  mount_uploader :image, ImageUploader
+
   has_attached_file :avatar,
                       :storage => :cloudinary,
-                      :cloudinary_credentials => Rails.root.join("config/cloudinary.yml"),
+                      :path => ':id/:style/:filename'
+                      ),
                       styles:  { medium: "300x300#", thumb: "100x100#" }
   validates_attachment_content_type :avatar,
                                       content_type: ["image/jpg","image/jpeg","image/png"]
