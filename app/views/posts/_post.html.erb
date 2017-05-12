@@ -3,22 +3,28 @@
   <div>
   <%= post.title %>
   </div>
-  <!--// 折り畳み展開ポインタ -->
-
-  <!-- 折り畳まれ部分 -->
 
   <!--// 折り畳まれ部分 -->
   <% unless post.supports.empty? %>
-    <div>協力表明してくれた人</div>
+    <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
+      <a style="cursor:pointer;">
+      ▼ 協力表明してくれた人(クリックで確認)
+      </a>
+    </div>
+
+    <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
     <% post.supports.each do |support|%>
       <div>
         <% if support.notification == 1 %>
-          <%= link_to "支援者の名前: " + User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+          <font color=#ff0000><%= link_to User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %></font>
         <% else %>
-          <%= link_to "支援者名前: " + User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+          <%= link_to User.find(support.supporter_id).nickname , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
         <% end %>
       </div>
     <%end%>
+    </div>
+
+
   <% end %>
 
   <%
