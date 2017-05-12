@@ -50,6 +50,10 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     if post.user.id == current_user.id
       post.destroy
+      supports = Support.where('post_id = :post_id',{post_id: params[:id]})
+      supports.each do |support|
+        support.destroy
+      end
     end
     redirect_to controller: "users", action: :show, id: current_user.id
   end
