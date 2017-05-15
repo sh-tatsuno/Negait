@@ -15,6 +15,7 @@
 //= require jquery.turbolinks
 //= require_tree .
 
+//クリック時に要素切り替え
 $(window).on("load", function() {
   $(".change").on("click", function() {
     $(".change.selected").removeClass("selected");
@@ -26,13 +27,10 @@ $(window).on("load", function() {
   });
 });
 
+//送信ボタン送信時
 function _submit(){
   //var inputs = $('#talk_talk').val();
   //alert(inputs);
   $('#talk_talk').submit();
   $("#talk_talk").val("");
 }
-
-
-
-

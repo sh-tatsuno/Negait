@@ -2,9 +2,9 @@
   <div class="other-chat-box">
     <div class="other-chat-face">
       <% if talk.user.avatar_file_name.nil? %>
-        <a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile.png" %>" alt="" width="90" height="90" /></a>
+        <a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile.png" %>" alt="" /></a>
       <% else %>
-        <%= link_to image_tag(talk.user.avatar, :size => "90x90", :alt => "アイコン") %>
+        <%= link_to image_tag(talk.user.avatar, :alt => "アイコン") %>
       <% end %>
     </div>
     <div class="other-chat-area">
@@ -17,9 +17,9 @@
   <div class="my-chat-box">
     <div class="my-chat-face">
       <% if talk.user.avatar_file_name.nil? %>
-        <a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile.png" %>" alt="" width="90" height="90" /></a>
+        <a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile.png" %>" alt="" /></a>
       <% else %>
-        <%= link_to image_tag(talk.user.avatar, :size => "90x90", :alt => "アイコン") %>
+        <%= link_to image_tag(talk.user.avatar, :alt => "アイコン") %>
       <% end %>
     </div>
     <div class="my-chat-area">

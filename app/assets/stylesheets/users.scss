@@ -8,3 +8,61 @@
     color: #ff0000;
   }
 }
+
+.tab-menu {
+  width: 100%;
+  padding-bottom: 3%;
+  padding-top: 3%;
+
+  ul { /* .tab-menuの中のulに対する記述 */
+    margin: auto;
+    padding: 0;
+
+  }
+
+  li { /* .tab-menuの中のli */
+
+        cursor: pointer;
+        text-align: center;
+
+        // background: url(/assets/help.png);
+        // list-style-image: url('./assets/images/help.png');
+
+        display: inline-block;
+
+        height: 22px;
+        width: 49%;
+        //align: center;
+
+        @media (min-width: 768px) {
+          height: 22px;
+          width: 49%;
+        }
+
+        .change{
+          background-color: #FFFFFF;
+
+          &.selected {/* .tab-menuの中のliの内、.selectedが与えられているものに対する記述 */
+          background-color: #C7F8E9;
+          }
+        }
+  }
+
+  img {
+          width: 90px;
+          height: 90px;
+        @media (min-width: 768px) {
+          width: 200px;
+          height: 200px;
+        }
+  }
+
+}
+
+
+
+.contents {
+  .switch-right { /* .contentsの中の.rightに対する記述 */
+    display: none; /* 最初、右のコンテンツは非表示にする */
+  }
+}

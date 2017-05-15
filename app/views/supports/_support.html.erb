@@ -1,7 +1,7 @@
 <div class="post-block">
   <!-- 折り畳み展開ポインタ -->
   <div>
-  <%= support.post.title %>
+  <%= link_to support.post.title, :controller => "posts", :action => "show", user_id: support.user_id, id: support.post.id %>
   </div>
   <!--// 折り畳み展開ポインタ -->
 
@@ -33,14 +33,8 @@
   <% else %>
     <div>
   <% end %>
-      <div style="float: left">
-        <%= link_to "投稿を確認", :controller => "posts", :action => "show", user_id: support.user_id, id: support.post.id %>
-      </div>
-      <div style="float: right">
-        <%= link_to "トークに進む" , user_path(support.user_id)  + '/posts/' +  support.post_id.to_s + '/supports/' + support.id.to_s + '/talks' %>
-      <!--&nbsp;&nbsp; 協力を消す-->
-      </div>
+      <%= link_to "トークに進む" , user_path(support.user_id)  + '/posts/' +  support.post_id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+    <!--&nbsp;&nbsp; 協力を消す-->
   </div>
-  <div class="margin"></div>
 </div>
 <div class="margin"></div>

@@ -1,43 +1,10 @@
 <div class="post-block">
   <!-- 折り畳み展開ポインタ -->
   <div>
-  <%= post.title %>
+  <%= link_to post.title, :controller => "posts", :action => "show", user_id: current_user.id, id: post.id %>
   </div>
 
-  <!--// 折り畳まれ部分 -->
-  <% unless post.supports.empty? %>
-    <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
-      <a style="cursor:pointer;">
-      ▼ 協力表明してくれた人(クリックで確認)
-      </a>
-    </div>
-
-    <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
-    <% post.supports.each do |support|%>
-      <% if support.poster_notification == 1 %>
-      <div class="post-cell">
-      <% else %>
-      <div>
-      <% end %>
-
-          <div style="float: left">
-            <%= link_to User.find(support.supporter_id).nickname , '/users/' +  support.supporter_id.to_s + '/profile' %>
-          </div>
-          <div style="float: right">
-            <%= link_to "トークに進む" , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
-          <!--&nbsp;&nbsp; 協力を消す-->
-          </div>
-
-          <div style="clear: both;"></div>
-
-      </div>
-    <%end%>
-    </div>
-
-
-  <% end %>
-
-  <%
+    <%
   date = (14 * (60*60*24) - (Time.now - post.created_at))
   if date > 0
   %>
@@ -59,6 +26,36 @@
     時間完了
   </div>
   <%end%>
-  <%= link_to "投稿を確認", :controller => "posts", :action => "show", user_id: current_user.id, id: post.id %>
+
+  <!--// 折り畳まれ部分 -->
+  <% unless post.supports.empty? %>
+    <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
+      <a style="cursor:pointer;">
+      ▼ 協力表明してくれた人(クリックで確認)
+      </a>
+    </div>
+
+    <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
+    <% post.supports.each do |support|%>
+      <% if support.poster_notification == 1 %>
+      <div class="post-cell">
+      <% else %>
+      <div>
+      <% end %>
+          <div style="float: left">
+            <%= link_to User.find(support.supporter_id).nickname , '/users/' +  support.supporter_id.to_s + '/profile' %>
+          </div>
+          <div style="float: right">
+            <%= link_to "トークに進む" , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+          <!--&nbsp;&nbsp; 協力を消す-->
+          </div>
+
+          <div style="clear: both;"></div>
+
+      </div>
+    <%end%>
+    </div>
+  <% end %>
+
 </div>
 <div class="margin"></div>

@@ -154,3 +154,18 @@ header {
   background: url(arrow01.png) right 50% no-repeat, linear-gradient(to bottom, #fff 0%,#efebe1 100%);
   background-size: 20px, 100%;
 }
+
+.company{
+  font-size: 10px;
+  color: #708090;
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.support{
+  font-size: 10px;
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}

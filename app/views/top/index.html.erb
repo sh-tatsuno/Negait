@@ -4,7 +4,7 @@
 カテゴリを絞り込む
 <%= form_tag('/', method: :get) do %>
   <select id="category" name="category">
-    <option value="all"　selected>全て</option>
+    <option value="all">全て</option>
     <option value="colleages">仲間募集</option>
     <option value="study">勉強会開催</option>
     <option value="items">物が欲しい/いらない</option>
@@ -32,10 +32,10 @@
       <div>
         投稿者：<%=post.user.nickname%>
       </div>
-      <div>
-        所属：<%=company_name(post.user.company)%>
+      <div class = "company">
+        <%=company_name(post.user.company)%>
       </div>
-      <div>支援数：<%=post.supports.size%></div>
+      <div class = "support">支援数：<%=post.supports.size%></div>
       <div>
       状態：
       <% if post.completed == 1 %>
