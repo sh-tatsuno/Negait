@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
   def show
-    current_user.supports.update_all(notification: 0)
+    #showにアクセスしたらそのユーザーの部分の通知を外す
+    current_user.update(ring: 0)
+
     @posts = current_user.posts.order("created_at DESC")
 
     #自分が協力した投稿

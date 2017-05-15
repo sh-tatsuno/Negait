@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512080435) do
+ActiveRecord::Schema.define(version: 20170515021832) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",      limit: 255,               null: false
@@ -24,13 +24,14 @@ ActiveRecord::Schema.define(version: 20170512080435) do
   end
 
   create_table "supports", force: :cascade do |t|
-    t.integer  "post_id",      limit: 4
-    t.integer  "supporter_id", limit: 4
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.string   "message",      limit: 255
-    t.integer  "notification", limit: 4,   default: 0
-    t.integer  "user_id",      limit: 4
+    t.integer  "post_id",                limit: 4
+    t.integer  "supporter_id",           limit: 4
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "message",                limit: 255
+    t.integer  "poster_notification",    limit: 4,   default: 0
+    t.integer  "user_id",                limit: 4
+    t.integer  "supporter_notification", limit: 4,   default: 0
   end
 
   create_table "talks", force: :cascade do |t|
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20170512080435) do
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
     t.text     "introduction",           limit: 65535
+    t.integer  "ring",                   limit: 4,     default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
