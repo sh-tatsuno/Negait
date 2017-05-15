@@ -44,6 +44,7 @@ class PostsController < ApplicationController
   def complete
     Post.find(params[:id]).update(completed: 1)
     #redirect_to action: :show, id: params[:id]
+    @count = Post.all.sum(:completed)
   end
 
   def destroy
