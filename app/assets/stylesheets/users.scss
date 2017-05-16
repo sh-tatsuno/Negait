@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //投稿したトークにアップデートがあった場合のリンクの色変更
+
+$selected: #BFBFBF;
 .post-cell{
   a{
     color: #ff0000;
@@ -43,7 +45,7 @@
           background-color: #FFFFFF;
 
           &.selected {/* .tab-menuの中のliの内、.selectedが与えられているものに対する記述 */
-          background-color: #C7F8E9;
+          background-color: $selected;
           }
         }
   }
@@ -51,6 +53,10 @@
   img {
           width: 90px;
           height: 90px;
+        @media (min-width: 600px) {
+          width: 140px;
+          height: 140px;
+        }
         @media (min-width: 768px) {
           width: 200px;
           height: 200px;
