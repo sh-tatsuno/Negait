@@ -4,57 +4,53 @@
   <%= link_to post.title, :controller => "posts", :action => "show", user_id: current_user.id, id: post.id %>
   </div>
 
-    <%
-  date = (14 * (60*60*24) - (Time.now - post.created_at))
-  if date > 0
-  %>
+ <% if post.completed == 1 %>
   <div>
-    残り
-    <%
-    date = (14 * (60*60*24) - (Time.now - post.created_at))
-    day = (date / (60*60*24)).floor
-    date -= day * (60*60*24)
-    hour = (date / (60*60)).floor
-    min = ((date % (60*60))/60).floor
-    %>
-    <%= day %>日
-    <%= hour %>時間
-    <%= min %>分
+    <div style="color:#FF0000;">Complete!</div>
+  </div>
+ <% elsif date_judge(post.created_at, 14)[:timeend] == 1 %>
+  <div>
+    <div style="color:#BFBFBF;">期限切れ</div>
   </div>
   <%else%>
   <div>
-    時間完了
+    残り <%=date_judge(post.created_at, 14)[:date]%>
   </div>
   <%end%>
 
-  <!--// 折り畳まれ部分 -->
-  <% unless post.supports.empty? %>
-    <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
-      <a style="cursor:pointer;">
-      ▼ 協力表明してくれた人(クリックで確認)
-      </a>
-    </div>
 
-    <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
-    <% post.supports.each do |support|%>
-      <% if support.poster_notification == 1 %>
-      <div class="post-cell">
-      <% else %>
-      <div>
-      <% end %>
-          <div style="float: left">
-            <%= link_to User.find(support.supporter_id).nickname , '/users/' +  support.supporter_id.to_s + '/profile' %>
-          </div>
-          <div style="float: right">
-            <%= link_to "トークに進む" , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
-          <!--&nbsp;&nbsp; 協力を消す-->
-          </div>
-
-          <div style="clear: both;"></div>
-
+    <!--// 折り畳まれ部分 -->
+    <% if post.supports.empty? %>
+      協力してくれている人はいません
+    <% else %>
+      <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
+        <a style="cursor:pointer;">
+        ▼ 協力表明してくれた人(クリックで確認)
+        </a>
       </div>
-    <%end%>
-    </div>
+
+      <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
+        <% post.supports.each do |support|%>
+          <% if support.poster_notification == 1 %>
+            <div class="post-cell">
+          <% else %>
+            <div>
+          <% end %>
+            <div style="float: left">
+              <%= link_to User.find(support.supporter_id).nickname , '/users/' +  support.supporter_id.to_s + '/profile' %>
+            </div>
+
+            <% if post.completed == 0 and date_judge(post.created_at, 14)[:timeend] == 0%>
+              <div style="float: right">
+                <%= link_to "トークに進む" , request.fullpath + '/posts/' +  post.id.to_s + '/supports/' + support.id.to_s + '/talks' %>
+              <!--&nbsp;&nbsp; 協力を消す-->
+              </div>
+            <% end %>
+        <%end%>
+      <div style="clear: both;"></div>
+      </div>
+      </div>
+
   <% end %>
 
 </div>

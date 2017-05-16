@@ -63,7 +63,6 @@ class ApplicationController < ActionController::Base
     if date < 0
       timeend = 1
     end
-    date = (14 * (60*60*24) - (Time.now - created_time))
     day = (date / (60*60*24)).floor
     date -= day * (60*60*24)
     hour = (date / (60*60)).floor
