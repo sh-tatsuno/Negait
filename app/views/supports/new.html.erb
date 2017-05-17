@@ -1,7 +1,7 @@
 <%= form_for [@user, @post, @support] do |f| %>
   <div style="margin: 8px 0">
     <%= f.label :message, '最初のメッセージを送ろう！', style: { 'margin-right' => 8 } %><br>
-    <%= f.text_area :message, placeholder: 'メッセージ', max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+    <%= f.text_area :message, placeholder: 'メッセージ', :class => "support-box" %>
   </div>
   <div>
     <%= button_tag type: "submit", class: "button", data: { confirm: '協力メッセージを送ってよろしいですか？' } do %>

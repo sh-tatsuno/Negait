@@ -4,7 +4,7 @@
 
 //投稿したトークにアップデートがあった場合のリンクの色変更
 
-$selected: #BFBFBF;
+$selected: #afeeee;
 $assort: #79D1B0;
 .post-cell{
   a{
@@ -47,7 +47,7 @@ $assort: #79D1B0;
         @media (max-width: 501px) {
           height: 22px;
           width: 49%;
-          margin-left: -4%;
+          margin-left: -5%;
         }
         @media (min-width: 768px) {
           height: 22px;
@@ -79,7 +79,6 @@ $assort: #79D1B0;
 
 .center-block{
   width: 80%;
-  padding: 3%;
   margin: auto;
   @media (max-width: 501px) {
     width: 100%;
@@ -93,4 +92,8 @@ $assort: #79D1B0;
   .switch-right { /* .contentsの中の.rightに対する記述 */
     display: none; /* 最初、右のコンテンツは非表示にする */
   }
+}
+
+.profile-container{
+  margin: auto;
 }

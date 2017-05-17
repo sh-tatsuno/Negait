@@ -3,10 +3,12 @@
   <div>
   <%= link_to post.title, :controller => "posts", :action => "show", user_id: current_user.id, id: post.id %>
   </div>
-
+  <div class = "company">
+        投稿日：<%=post.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
+      </div>
  <% if post.completed == 1 %>
   <div>
-    <div style="color:#FF0000;">Complete!</div>
+    <div style="color:#FF0000;">Completed!</div>
   </div>
  <% elsif date_judge(post.created_at, 14)[:timeend] == 1 %>
   <div>

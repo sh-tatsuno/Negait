@@ -10,3 +10,11 @@
   margin: 10px;
 }
 
+.bosyu{
+ font-size: 10px;
+ @media (min-width: 420px) {
+    font-size: 10px;
+  }
+ display: inline-block;
+ _display: inline;
+}

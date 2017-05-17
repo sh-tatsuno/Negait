@@ -24,6 +24,13 @@ $(window).on("load", function() {
     var selected = "." + this.id;
     $(selected).show();
     $(selected + " div").show(); // クリックされたボタンに対応する要素を表示する
+    if($('#tab-title').text()=="さんの投稿一覧"){
+      $('#tab-title').text("さんの支援一覧");
+    }else{
+      $('#tab-title').text("さんの投稿一覧");
+    }
+
+
   });
 });
 

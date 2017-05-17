@@ -22,6 +22,7 @@
         <%= link_to image_tag(talk.user.avatar, :alt => "アイコン") %>
       <% end %>
     </div>
+    
     <div class="my-chat-area">
       <div class="my-chat-hukidashi">
         <%= simple_format(talk.talk.gsub(/\R/, "<br/>"), {}, wrapper_tag: "div") %>

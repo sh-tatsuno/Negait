@@ -13,10 +13,11 @@
     <option value="free_talking">よもやま</option>
     <option value="others">その他</option>
   </select>
-  <input type="checkbox" name="attribute" value="available"><div style="font-size: 10px; display: inline-block; _display: inline;">募集中のものだけ表示する</div>
-  <button class="button" title="検索" type="submit">絞り込み</button>
+  <button class="button" title="検索" type="submit">絞り込み</button><br>
+  <input type="checkbox" name="attribute" value="available"><div class="bosyu">募集中のみ表示</div>
 <% end %>
 </div>
+<br>
 
 <% @posts.each do |post|%>
   <% unless post.user_id == current_user.id%>
@@ -27,7 +28,6 @@
     <% end %>
       <div>
         <% url = '/users/'+post.user_id.to_s+'/posts/'+post.id.to_s%>
-        <% #binding.pry %>
         <%= link_to post.title, url %>
       </div>
       <div>
@@ -37,15 +37,19 @@
         <%=company_name(post.user.company)%>
       </div>
       <div class = "support">支援数：<%=post.supports.size%></div>
+      <div class = "company">
+        投稿日：<%=post.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
+      </div>
       <div>
-      状態：
       <% if post.completed == 1 %>
-          願いは達成されました
+          <div style="color:#FF0000;">Completed!</div>
       <%else%>
         <% if date_judge(post.created_at, 14)[:timeend] == 1 %>
-          期限満了
+          <div style="color:#BFBFBF;">期限切れ</div>
         <% else %>
-          募集中(残り<%= date_judge(post.created_at, 14)[:date] %>)
+          <div>
+            残り <%=date_judge(post.created_at, 14)[:date]%>
+          </div>
         <% end %>
       <%end%>
       </div>
