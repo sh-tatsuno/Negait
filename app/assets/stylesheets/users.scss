@@ -5,6 +5,7 @@
 //投稿したトークにアップデートがあった場合のリンクの色変更
 
 $selected: #BFBFBF;
+$assort: #79D1B0;
 .post-cell{
   a{
     color: #ff0000;
@@ -19,6 +20,14 @@ $selected: #BFBFBF;
   ul { /* .tab-menuの中のulに対する記述 */
     margin: auto;
     padding: 0;
+    @media (max-width: 500px) {
+      position: fixed;
+      margin: 0 -500%;
+      padding: 0 500%;
+      bottom: -0.7%;
+      width: 100%;
+      background-color: $assort;
+    }
 
   }
 
@@ -35,7 +44,11 @@ $selected: #BFBFBF;
         height: 22px;
         width: 49%;
         //align: center;
-
+        @media (max-width: 501px) {
+          height: 22px;
+          width: 49%;
+          margin-left: -4%;
+        }
         @media (min-width: 768px) {
           height: 22px;
           width: 49%;
@@ -51,18 +64,27 @@ $selected: #BFBFBF;
   }
 
   img {
-          width: 90px;
-          height: 90px;
-        @media (min-width: 600px) {
-          width: 140px;
-          height: 140px;
+          width: 100px;
+          height: 100px;
+        @media (min-width: 501px) {
+          width: 160px;
+          height: 160px;
         }
         @media (min-width: 768px) {
-          width: 200px;
-          height: 200px;
+          width: 210px;
+          height: 210px;
         }
   }
+}
 
+.center-block{
+  width: 80%;
+  padding: 3%;
+  margin: auto;
+  @media (max-width: 501px) {
+    width: 100%;
+    padding-bottom: 100px;
+  }
 }
 
 
