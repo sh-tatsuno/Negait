@@ -1,27 +1,33 @@
 <div class="profile-container">
+  <div class="profile-img">
   <% if @user.avatar_file_name.nil? %>
     <a href = "<%= root_path %>"><img src="<%= asset_path "profile.png" %>" alt="" width="300" height="300" /></a>
   <% else %>
     <%= link_to image_tag(@user.avatar, :size => "300x300", :alt => "アイコン") %>
   <% end %>
+  </div>
 
   <div class="margin"></div>
 
+  <hr width=100%>
   <div>
   ・ニックネーム<br>
   <%= @user.nickname %>
   </div>
 
+  <hr width=100%>
   <div>
   ・性別<br>
   <%= gender_name(@user.sex) %>
   </div>
 
+  <hr width=100%>
   <div>
   ・所属会社<br>
   <%= company_name(@user.company) %>
   </div>
 
+  <hr width=100%>
   <div>
   ・自己紹介
   <% unless @user.introduction.nil? %>

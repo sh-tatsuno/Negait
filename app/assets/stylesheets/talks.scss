@@ -177,3 +177,25 @@ $button: #93B8CA;
     background-color: lighten($button, 3%) !important;
   }
 }
+
+.talk-field{
+    padding-top: 50px;
+}
+
+.talk-person{
+    margin-top: -36px;
+    margin-left: -20px;
+    margin-right: -20px;
+    text-align: center;
+    font-size: 20px;
+    height: 40px;
+    @media (min-width: 600px) {
+        font-size: 24px;
+    }
+    background-color: rgba(150,150,150,0.3);
+    padding-top: 10px;
+
+
+
+
+}
