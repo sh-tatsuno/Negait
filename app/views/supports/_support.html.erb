@@ -4,8 +4,8 @@
   <%= link_to support.post.title, :controller => "posts", :action => "show", user_id: support.user_id, id: support.post.id %>
   </div>
   <div class = "company">
-        投稿日：<%=support.post.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
-      </div>
+    投稿日：<%=support.post.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M:%S")%>
+  </div>
 
 
  <% if support.post.completed == 1 %>
