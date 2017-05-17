@@ -1,17 +1,23 @@
 <div class="post-new">
 <%= form_for [@user, @post] do |f| %>
   <div class="field">
+    ・タイトル<br>
     <%= @post.title %>
     <%= f.hidden_field :title %>
   </div>
+  <br>
   <div class="field">
+    ・カテゴリ<br>
     <%= category_name(@post.category) %>
     <%= f.hidden_field :category %>
   </div>
+  <br>
   <div class="field">
+    ・内容<br>
      <%= @post.detail %>
     <%= f.hidden_field :detail %>
   </div>
+  <br>
   <div class="actions">
     <%= link_to '戻る', :back %>
   </div>
