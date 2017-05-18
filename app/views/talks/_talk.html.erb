@@ -2,7 +2,7 @@
   <div class="other-chat-box">
     <div class="other-chat-face">
       <% if talk.user.avatar_file_name.nil? %>
-        <a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile.png" %>" alt="" /></a>
+        <a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile_new.png" %>" alt="" /></a>
       <% else %>
         <%= link_to image_tag(talk.user.avatar, :alt => "アイコン") %>
       <% end %>
