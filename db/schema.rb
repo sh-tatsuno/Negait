@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518064331) do
+ActiveRecord::Schema.define(version: 20170518105922) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",      limit: 255,               null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20170518064331) do
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.string   "message",                limit: 255
-    t.integer  "poster_notification",    limit: 4,   default: 0
+    t.integer  "poster_notification",    limit: 4,   default: 1
     t.integer  "user_id",                limit: 4
     t.integer  "supporter_notification", limit: 4,   default: 0
   end

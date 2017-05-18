@@ -29,7 +29,13 @@
     <% else %>
       <div onclick="obj=document.getElementById('<%='open-' + post.id.to_s%>').style; obj.display=(obj.display=='none')?'block':'none';">
         <a style="cursor:pointer;">
-        ▼ 協力表明してくれた人(クリックで確認)
+        <% unless post.supports.where('poster_notification = 1').empty? %>
+        <div class="post-cell">
+        <% else %>
+        <div>
+        <% end %>
+        <a>▼ 協力表明してくれた人(クリックで確認)</a>
+        </div>
         </a>
       </div>
 
