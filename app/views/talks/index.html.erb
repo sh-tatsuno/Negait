@@ -8,13 +8,13 @@ if (document.URL.match('/talks')) {
   var poster_img;
   var supporter_img;
   <% if @poster.avatar_file_name.nil? %>
-    poster_img = '<a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile.png" %>" alt="" /></a>';
+    poster_img = '<a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile_new.png" %>" alt="" /></a>';
   <% else %>
     poster_img = '<%= link_to image_tag(@poster.avatar, :size => "90x90") %>';
   <% end %>
 
   <% if @supporter.avatar_file_name.nil? %>
-    supporter_img = '<a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile.png" %>" alt="" /></a>';
+    supporter_img = '<a href = "<%= profile_user_path(current_user) %>"><img src="<%= asset_path "profile_new.png" %>" alt="" /></a>';
   <% else %>
     supporter_img = '<%= link_to image_tag(@supporter.avatar, :size => "90x90") %>';
   <% end %>

@@ -30,7 +30,7 @@
   <div>
   ・画像<br>
     <% if current_user.avatar_file_name.nil? %>
-    <%= link_to image_tag("profile.png", :size => "300x300", :alt => "アイコン") %>
+    <%= link_to image_tag("profile_new.png", :size => "300x300", :alt => "アイコン") %>
     <% else %>
     <%= link_to image_tag(current_user.avatar, :size => "300x300", :alt => "アイコン") %>
     <% end %>

@@ -1,7 +1,7 @@
 <div class="profile-container">
   <div class="profile-img">
   <% if @user.avatar_file_name.nil? %>
-    <a href = "<%= root_path %>"><img src="<%= asset_path "profile.png" %>" alt="" width="300" height="300" /></a>
+    <a href = "<%= root_path %>"><img src="<%= asset_path "profile_new.png" %>" alt="" width="300" height="300" /></a>
   <% else %>
     <%= link_to image_tag(@user.avatar, :size => "300x300", :alt => "アイコン") %>
   <% end %>
