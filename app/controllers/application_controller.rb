@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
     "study" => "勉強会開催",
     "items" => "物が欲しい/いらない",
     "consultation" => "相談に乗って欲しい",
-    "introduction" => "紹介したい人がいる",
+    "introduction" => "紹介して欲しい",
     "free_talking" => "よもやま",
     "others" => "その他"
     }
