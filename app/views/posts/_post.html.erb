@@ -1,4 +1,5 @@
 <div class="post-block">
+
   <!-- 折り畳み展開ポインタ -->
   <div>
   <%= link_to post.title, :controller => "posts", :action => "show", user_id: current_user.id, id: post.id %>
@@ -39,6 +40,7 @@
           <% else %>
             <div>
           <% end %>
+
             <div style="float: left">
               <%= link_to User.find(support.supporter_id).nickname , '/users/' +  support.supporter_id.to_s + '/profile' %>
             </div>
@@ -49,13 +51,15 @@
               <!--&nbsp;&nbsp; 協力を消す-->
               </div>
             <% end %>
+            <div style="clear: both;"></div>
+          </div>
         <%end%>
-      <div style="clear: both;"></div>
+
       </div>
-      </div>
+      
 
   <% end %>
-  </div>
+</div>
 
 
 <div class="margin"></div>
