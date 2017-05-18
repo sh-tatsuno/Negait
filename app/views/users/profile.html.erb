@@ -29,6 +29,13 @@
 
   <hr width=100%>
   <div>
+  ・所属部署・仕事内容<br>
+  <%= @user.work %>
+  <br>
+  </div>
+
+  <hr width=100%>
+  <div>
   ・自己紹介
   <% unless @user.introduction.nil? %>
     <%= simple_format(@user.introduction) %>
