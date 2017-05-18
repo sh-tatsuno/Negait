@@ -33,7 +33,7 @@
         </a>
       </div>
 
-      <div id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
+      <article id="<%='open-' + post.id.to_s%>" style="display:none;clear:both;">
         <% post.supports.each do |support|%>
           <% if support.poster_notification == 1 %>
             <div class="post-cell">
@@ -55,8 +55,7 @@
           </div>
         <%end%>
 
-      </div>
-      
+      </article>
 
   <% end %>
 </div>
